@@ -60,7 +60,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        // Load profile from Dexie or remote
         db.profiles
           .where('user_id')
           .equals(session.user.id)
@@ -83,8 +82,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setProfile(p);
           localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(p));
         }
-      } else if (!session && isSupabaseConfigured) {
-        // Only clear if explicitly signed out from Supabase and not offline mode
       }
     });
 

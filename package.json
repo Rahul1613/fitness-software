@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
+    "@supabase/supabase-js": "^2.117.2",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dexie": "^4.0.11",
