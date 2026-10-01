@@ -9,6 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'logo.png'],
       manifest: {
         name: 'AIM Fitness',
@@ -18,6 +19,10 @@ export default defineConfig({
         background_color: '#0f1117',
         display: 'standalone',
         orientation: 'portrait-primary',
+        start_url: '/',
+        scope: '/',
+        lang: 'en',
+        categories: ['health', 'fitness', 'sports'],
         icons: [
           {
             src: '/pwa-192x192.png',
@@ -35,10 +40,43 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'any maskable'
           }
+        ],
+        shortcuts: [
+          {
+            name: 'Admin Dashboard',
+            url: '/admin',
+            description: 'Open Owner & Staff Dashboard'
+          },
+          {
+            name: 'QR Scanner',
+            url: '/scan',
+            description: 'Scan Member QR for Attendance'
+          },
+          {
+            name: 'Member Portal',
+            url: '/portal',
+            description: 'View My Member Card'
+          }
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-cache',
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }
+            }
+          }
+        ],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true
+      },
+      devOptions: {
+        enabled: false
       }
     })
   ],
