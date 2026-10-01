@@ -161,12 +161,9 @@ export const MemberPortal: React.FC = () => {
             </button>
           </form>
 
-          <div className="pt-2 border-t border-dark-750 flex items-center justify-between text-xs text-slate-400">
+          <div className="pt-2 border-t border-dark-750 flex items-center justify-center text-xs text-slate-400">
             <button onClick={() => navigate('/')} className="hover:text-white">
-              ← Public Website
-            </button>
-            <button onClick={() => navigate('/admin')} className="hover:text-white">
-              Staff Portal ➔
+              ← Back to Public Website
             </button>
           </div>
         </div>
